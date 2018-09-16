@@ -1,4 +1,4 @@
-## Node Typescript starter
+## Bearded Framework
 
 ### Development
 
