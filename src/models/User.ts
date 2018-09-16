@@ -1,7 +1,7 @@
-import model from './model';
+import { Model } from '@beardedframework/lumberjack';
 
 
-export default class User extends model{
+export default class User extends Model{
 
   public table : string = 'users';
 
@@ -10,7 +10,6 @@ export default class User extends model{
   public hidden : Array<string> = ['api_token', 'remember_token', 'password'];
 
   constructor(data : any = {}){
-
     super(data);
   }
 }
