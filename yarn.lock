@@ -9,8 +9,9 @@
     "@types/node" "7.0.22"
     nodemon "1.11.0"
 
-"@beardedframework/lumberjack@file:../bearded-lumberkack":
-  version "0.0.5"
+"@beardedframework/lumberjack@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@beardedframework/lumberjack/-/lumberjack-0.0.6.tgz#48ee405cb2e2e7163593f6fcffc6a2c7a272e788"
   dependencies:
     "@beardedframework/logger" latest
     "@types/node" "7.0.22"
