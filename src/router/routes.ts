@@ -31,12 +31,11 @@ export default class Routes{
     
     this.router.get('/', MainController.index );
     this.router.get('/update', MainController.update );
-    this.router.get('/post', MainController.post );
+    this.router.get('/store', MainController.store );
     this.router.get('/fetch', MainController.fetch );
 
     return this.router;
   }
-
 
 }
   

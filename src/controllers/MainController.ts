@@ -2,8 +2,18 @@ import User from '../models/User'
 
 
 export default class MainController{
-
-  public static async post (req, res) : Promise<any> {
+  
+  /*
+   *
+   * used to save data
+   *
+   * @ object req
+   * @ object res
+   *
+   * @return Promise
+   *
+   * */
+  public static async store (req, res) : Promise<any> {
 
     const user = User.create({
       'name': 'Jane',
@@ -17,6 +27,16 @@ export default class MainController{
     })
   }
 
+  /*
+   *
+   * used to update data
+   *
+   * @ object req
+   * @ object res
+   *
+   * @return Promise
+   *
+   * */
   public static async update (req, res) : Promise<any> {
 
     //let user = new User();
@@ -33,17 +53,49 @@ export default class MainController{
     })
   }
 
-  public static async index (req, res) : Promise<any> {
+  /*
+   *
+   * main entry
+   *
+   * @ object req
+   * @ object res
+   *
+   * @return Promise
+   *
+   * */
+    public static async get (req, res) : Promise<any> {
+  
+      let data = User.find(req.id);
 
-    //const response = await User.find(1);
-
-    const response = await User.select('users.*, employees.gender').leftJoin('employees', 'employees.user_id', '=', 'users.id').where('users.id', '=', 3).first()
+      return res.json(data.toJson())
+  }
+  /*
+   *
+   * main entry
+   *
+   * @ object req
+   * @ object res
+   *
+   * @return Promise
+   *
+   * */
+    public static async index (req, res) : Promise<any> {
 
     return res.json({
-      message: response.toJson()
+      message: "hello world"
     })
   }
 
+  /*
+   *
+   * used to fetch data
+   *
+   * @ object req
+   * @ object res
+   *
+   * @return Promise
+   *
+   * */
   public static async fetch(req, res) : Promise<any> {
   
     const response = await User.fetchAll()
