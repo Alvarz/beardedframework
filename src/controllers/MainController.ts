@@ -1,57 +1,160 @@
-import User from '../models/User'
-
+import ResponseService from '../services/ResponseService';
+import { to } from '@beardedframework/lumberjack';
+import * as _ from 'lodash'
 
 export default class MainController{
-
-  public static async post (req, res) : Promise<any> {
-
-    const user = User.create({
-      'name': 'Jane',
-      'lastname':'Doe',
-      'password': 'password'
-    });
-
-    const userCreated = await user.save();
-    return res.json({
-      message: ''
-    })
-  }
-
-  public static async update (req, res) : Promise<any> {
-
-    //let user = new User();
-    //
-     const user = User.create({
-      'id': 1,
-      'name': 'Jane',
-      'lastname':'Doe'
-    });
-
-    const userUpdated = await user.save();
-    return res.json({
-      message: userUpdated.toJson()
-    })
-  }
-
-  public static async index (req, res) : Promise<any> {
-
-    //const response = await User.find(1);
-
-    const response = await User.select('users.*, employees.gender').leftJoin('employees', 'employees.user_id', '=', 'users.id').where('users.id', '=', 3).first()
-
-    return res.json({
-      message: response.toJson()
-    })
-  }
-
-  public static async fetch(req, res) : Promise<any> {
   
-    const response = await User.fetchAll()
-    //const user = await User.find(2);
+  protected response = ResponseService;
 
-    return res.json({
-      message: response.toJson()
-    })
+  /*
+   * crud method to fetch data
+   *
+   * @param { model } model
+   * @param { number } page
+   * @param { boolean } isComplex
+   *
+   * @rerurn { promise }
+   * -*/
+  public storeCrud = async (Model, req) => {
+  
+    const self = this;
+
+    return new Promise(async (resolve, reject) => {
+    
+      const body = req.body;
+      const elToBeSaved = self.createObject(Model, body)
+
+      const model = Model.create(elToBeSaved);
+
+      let err, created;
+      [err, created] = await to(model.save());
+      
+      if(err || !created)
+        reject(err);
+
+      let el = Model.find(created.insertId)
+
+      resolve(el);
+    
+    });
+  }
+
+  /*
+   * crud method to fetch data
+   *
+   * @param { model } model
+   * @param { number } page
+   * @param { boolean } isComplex
+   *
+   * @rerurn { promise }
+   * -*/
+  public updateCrud = async (Model, req) => {
+  
+    const self = this;
+    return new Promise(async (resolve, reject) => {
+
+      const id = req.params.id;
+      const body = req.body;
+
+      const elToBeSaved = self.createObject(Model, body)
+
+      let error, model
+      [error, model] = await to(Model.find(id));
+
+      if(error || !model)
+        reject(error)
+
+      model = this.updateModelValues(model, elToBeSaved);
+      
+      let err, updated;
+      [err, updated] = await to(model.save());
+
+      if(err || !updated)
+        reject(err);
+
+      resolve(model);
+    });
+  }
+  /*
+   * crud method to fetch data
+   *
+   * @param { model } model
+   * @param { number } page
+   * @param { boolean } isComplex
+   *
+   * @rerurn { promise }
+   * -*/
+  public async fetchCrud(model, page : number, isComplex : boolean = false) : Promise<any> {
+
+    if(isComplex)
+      console.log('there is no complex query yet');
+    else{
+
+      if(page > 0)
+        return model.fetchPaginated(page);
+      return model.fetchAll();
+    }
+
+  }
+
+
+  /*
+   * crud method to get single data
+   *
+   * @param { model } model
+   * @param { number } id
+   * @param { boolean } isComplex
+   *
+   * @rerurn { promise }
+   * -*/
+  public async getCrud(model, id : number, isComplex : boolean = false) : Promise<any> {
+
+    if(isComplex)
+      console.log('there is no complex query yet');
+    else{
+      return model.find(id);
+    }
+  }
+  /*
+   *
+   * generate the element to be saved by given model
+   *
+   * @param { object } body
+   * @param { model } model
+   *
+   * @return object
+   *
+   * */
+  private createObject(Model, body){
+  
+    let model = new Model();
+    let elToBeSaved = {}
+    
+    for(let key in body){
+      
+      if(model.fillable.includes(key))
+        elToBeSaved[key] = body[key]
+    
+    }
+    return elToBeSaved;
+  }
+
+  /*
+   *
+   * sync model data and values to be saved
+   *
+   * @param { object } body
+   * @param { model } model
+   *
+   * @return object
+   *
+   * */
+  private updateModelValues(model, values){
+
+    for(let key in values){
+      model.data[key] = values[key];
+    }
+    return model;
   }
 
 }

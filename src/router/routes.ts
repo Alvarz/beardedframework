@@ -1,10 +1,12 @@
 import * as express from 'express'
 import MainController from '../controllers/MainController'
-import MainMiddleware from './middlewares/MainMiddleware'
+import UserController from '../controllers/UserController'
+import { middlewares } from '../config/middlewares'
 
 export default class Routes{
 
   private router;
+  private userController;
   /*
    *
    * routes class constructor
@@ -16,8 +18,9 @@ export default class Routes{
 
     this.router = express.Router();
 
+    this.userController = new UserController();
     // register middlewares
-    this.router.use(MainMiddleware);
+    this.router.all('*',  middlewares);
   }
 
   /*
@@ -28,11 +31,15 @@ export default class Routes{
    *
    * */
   public paths() : express.Router {
-    
-    this.router.get('/', MainController.index );
-    this.router.get('/update', MainController.update );
-    this.router.get('/post', MainController.post );
-    this.router.get('/fetch', MainController.fetch );
+
+    this.router.get('/users/:id', this.userController.get)
+    this.router.get('/users/', this.userController.fetch)
+    this.router.post('/users/', this.userController.store)
+    this.router.put('/users/:id', this.userController.update)
+      /*this.router.route('/users')
+      .get(MainController.index )
+      .put(MainController.update )
+      .post(MainController.post )*/
 
     return this.router;
   }

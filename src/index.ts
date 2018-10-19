@@ -9,3 +9,6 @@ app.listen(port, (err) => {
 
   return console.log(`server is listening on ${port}`)
 })
+
+
+//"@beardedframework/lumberjack": "file:../bearded-lumberjack",
