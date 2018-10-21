@@ -1,5 +1,6 @@
 import User from '../models/User'
-import MainController from '../controllers/MainController'
+//import MainController from '../controllers/MainController'
+import { MainController }  from '@beardedframework/core'
 import { to } from '@beardedframework/lumberjack';
 
 export default class UserController extends MainController{

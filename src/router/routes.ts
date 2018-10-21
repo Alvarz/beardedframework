@@ -1,5 +1,4 @@
 import * as express from 'express'
-import MainController from '../controllers/MainController'
 import UserController from '../controllers/UserController'
 import { middlewares } from '../config/middlewares'
 
