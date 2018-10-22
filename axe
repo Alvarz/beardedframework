@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+var path = require('path');
+var Axe = require('@beardedframework/axe').default;
+
+var dirname = path.dirname(require.main.filename);
+
+
+var axe = new Axe(`${dirname}/src`, `${dirname}/node_modules/@beardedframework/core/templates`);
+
+let args = axe.getArgs();
+
+axe.dispatch();
+

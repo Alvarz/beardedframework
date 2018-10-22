@@ -2,11 +2,20 @@
 # yarn lockfile v1
 
 
-"@beardedframework/core@latest":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@beardedframework/core/-/core-0.0.5.tgz#8315de32682038e00dea8d4d19963234791782dc"
-  integrity sha512-CYerY9iFD0G9zsoiUDjCoQ6nt8DS5mGElXmkUhVYMx7/Xbcl9jhYFXnrhdy/EHYfouSJ8R72u2sPVrkxF+v2Rg==
+"@beardedframework/axe@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@beardedframework/axe/-/axe-0.0.6.tgz#2267332550f1ea6cc369e8076eeed9642d990831"
+  integrity sha512-EpMDVO2k3Imb3ncZQCqMAvNnrPma6p1Jf68xaLUZQkbi+55OkJiq1VuNs86/XSwoO7M0JQ70KuTlgo5GyYmg4g==
   dependencies:
+    "@types/node" "7.0.22"
+    nodemon "1.11.0"
+
+"@beardedframework/core@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@beardedframework/core/-/core-0.0.6.tgz#0ae3d7a99397fcb0dd4cfc2390db6cced189a9f2"
+  integrity sha512-PL3vdr/97+Smt9s06511zEzhLUuBrcZ+2r365xuHikpSWmUZpRFLNcSDCJFkq2WiJJLKxYkQGUNR+6nozHcmXA==
+  dependencies:
+    "@beardedframework/axe" "^0.0.6"
     "@beardedframework/lumberjack" "^0.1.13"
     "@types/node" "7.0.22"
     nodemon "1.11.0"
