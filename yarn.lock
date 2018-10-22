@@ -10,10 +10,10 @@
     "@types/node" "7.0.22"
     nodemon "1.11.0"
 
-"@beardedframework/core@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@beardedframework/core/-/core-0.0.6.tgz#0ae3d7a99397fcb0dd4cfc2390db6cced189a9f2"
-  integrity sha512-PL3vdr/97+Smt9s06511zEzhLUuBrcZ+2r365xuHikpSWmUZpRFLNcSDCJFkq2WiJJLKxYkQGUNR+6nozHcmXA==
+"@beardedframework/core@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@beardedframework/core/-/core-0.0.8.tgz#a9143d9b035cf6bc66ced4b6d0904f2aabaa5e4c"
+  integrity sha512-AYIemqR7jEIQ4VvvvJNsqjBQ+al9goDisjUt8lM4GGPLt8oFTDEItz/RQASNjmOCxIsp531lHSV4nKsYNLng9A==
   dependencies:
     "@beardedframework/axe" "^0.0.6"
     "@beardedframework/lumberjack" "^0.1.13"
