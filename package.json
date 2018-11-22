@@ -1,6 +1,6 @@
 {
   "name": "@beardedframework/beardedframework",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "the framework for bearded",
   "main": "index.js",
   "scripts": {
