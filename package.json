@@ -1,7 +1,7 @@
 {
   "name": "@beardedframework/beardedframework",
   "version": "0.0.12",
-  "description": "",
+  "description": "the framework for bearded",
   "main": "index.js",
   "scripts": {
     "build": "tsc",
@@ -20,7 +20,7 @@
   "author": "Carlos Alvarez <beardedframework@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "@beardedframework/core": "^0.0.8",
+    "@beardedframework/core": "latest",
     "@types/node": "7.0.22",
     "dotenv": "^6.0.0",
     "express": "4.15.3",

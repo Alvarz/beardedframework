@@ -2,35 +2,36 @@ import * as express from 'express'
 import UserController from '../controllers/UserController'
 import { middlewares } from '../config/middlewares'
 
+/*
+ * @class Routes
+ */
 export default class Routes{
 
-  private router;
-  private userController;
   /*
-   *
+   * @var router
+   */
+  private router;
+  /*
+   * @var {object} userController
+   */
+  private userController;
+  
+  /*
    * routes class constructor
-   *
-   * @return void
-   *
+   * @return {void}
    * */
   constructor(){
-
     this.router = express.Router();
-
     this.userController = new UserController();
     // register middlewares
     this.router.all('*',  middlewares);
   }
 
   /*
-   *
    * the router to be created
-   *
-   * @return express.Router
-   *
+   * @return {express.Router}
    * */
   public paths() : express.Router {
-
     this.router.get('/users/:id', this.userController.get)
     this.router.get('/users/', this.userController.fetch)
     this.router.post('/users/', this.userController.store)
